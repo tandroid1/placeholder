@@ -36,6 +36,10 @@
           $container.append('<span class="placeholder">' + placeholder + '</span>');
 
           label = $container.find(".placeholder");
+          
+          if ( $base.val().length != 0 ) {
+            label.hide();
+          }
 
           paddingTop = $base.css("padding-top");
           paddingBottom = $base.css("padding-bottom");
@@ -69,5 +73,6 @@
       });
     }
   };
+
 
 }(jQuery);
