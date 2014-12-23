@@ -60,7 +60,6 @@
           });
 
           $base.keypress(function(e) {
-            console.log(this.value);
             if (isNumeric(e.keyCode)) {
               label.hide();
             }
