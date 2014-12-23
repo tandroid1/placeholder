@@ -10,7 +10,8 @@
     if (!Modernizr.placeholder) {
       return this.each(function() {
 
-        var $base = $(this);
+        var base = this,
+            $base = $(base);
 
         if ($base.attr('type') === "text" || $base.is("textarea")) {
 
@@ -36,8 +37,8 @@
           $container.append('<span class="placeholder">' + placeholder + '</span>');
 
           label = $container.find(".placeholder");
-          
-          if ( $base.val().length != 0 ) {
+
+          if ( base.value.length != 0 ) {
             label.hide();
           }
 
@@ -58,12 +59,18 @@
             color: color
           });
 
-          $base.keyup(function() {
-            if ($(this).val().length > 0) {
+          $base.keypress(function(e) {
+            console.log(this.value);
+            if (isNumeric(e.keyCode)) {
               label.hide();
-            } else {
+            }
+          });
+
+          $base.keyup(function() {
+            if (this.value.length == 0) {
               label.show();
             }
+
           });
 
           label.click(function() {
@@ -72,7 +79,10 @@
         }
       });
     }
+
+    function isNumeric(char){
+      return !/[^a-zA-Z0-9]/.test(char);
+    }
+
   };
-
-
 }(jQuery);
